@@ -1,0 +1,42 @@
+---
+# PHP version to install
+php_version: 8.1
+
+# Global settings
+php_ini_global: {}
+
+# CLI ini settings
+php_ini_cli: {}
+
+# FPM ini settings
+php_ini_fpm: {}
+
+# Install a list of default extensions (see vars/main.yml)
+php_default_extensions_enabled: true
+
+# Own PHP extensions to be installed
+php_extensions: []
+
+# Use this installation as update alternative
+php_set_alternative: true
+
+# Location of PHP error log
+php_fpm_enable: true
+
+# Allow role to restart FPM if necessary
+php_fpm_allow_restart: true
+
+# Location of FPM error log
+php_fpm_error_log: /var/log/php_errors.log
+
+# FPM log level
+php_fpm_error_log_level: warning
+
+php_fpm_pools: []
+# Example for minimal pool
+# php_fpm_pools:
+#   - name: www
+#     listen: /run/php/www.sock
+#     error_log: /var/log/php_fpm_www_errors.log
+#     slow_log: /var/log/php_fpm_www_slow.log
+

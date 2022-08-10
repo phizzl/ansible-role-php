@@ -1,0 +1,40 @@
+---
+- name: PHP | FPM | Create php.ini for fpm
+  template:
+    src: php.ini.j2
+    dest: "/etc/php/{{ php_version }}/fpm/php.ini"
+  register: php_ini
+
+- name: PHP | FPM | Create custom.ini for fpm in conf.d
+  template:
+    src: custom.ini.j2
+    dest: "/etc/php/{{ php_version }}/fpm/conf.d/99-custom.ini"
+  vars:
+    ini_settings: "{{ php_ini_global|combine(php_ini_fpm) }}"
+  register: custom_ini
+
+- name: PHP | FPM | Create php-fpm.conf
+  template:
+    src: fpm/php-fpm.conf.j2
+    dest: "/etc/php/{{ php_version }}/fpm/php-fpm.conf"
+  register: fpm_conf
+
+- name: PHP | FPM | Create FPM pool config
+  template:
+    src: fpm/www.conf.j2
+    dest: "/etc/php/{{ php_version }}/fpm/pool.d/www.conf"
+  register: pool_conf
+
+- name: PHP | FPM | Restart FPM
+  service:
+    name: "php{{ php_version }}-fpm"
+    state: restarted
+  when: php_fpm_allow_restart == true and (fpm_conf.changed == true or pool_conf.changed == true)
+  register: restart_fpm
+
+- name: PHP | FPM | Reload FPM
+  service:
+    name: "php{{ php_version }}-fpm"
+    state: reloaded
+  when: restart_fpm is not defined and (php_ini.changed == true or custom_ini.changed == true)
+  register: restart_fpm

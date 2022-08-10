@@ -1,0 +1,12 @@
+---
+- name: PHP | FPM | Create php.ini for cli
+  template:
+    src: php.ini.j2
+    dest: "/etc/php/{{ php_version }}/fpm/php.ini"
+
+- name: PHP | CLI | Create custom.ini for cli in conf.d
+  template:
+    src: custom.ini.j2
+    dest: "/etc/php/{{ php_version }}/cli/conf.d/99-custom.ini"
+  vars:
+    ini_settings: "{{ php_ini_global|combine(php_ini_cli) }}"

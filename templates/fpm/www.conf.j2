@@ -1,0 +1,52 @@
+; {{ ansible_managed }}
+
+{% for app_settings in php_fpm_pools %}
+{% set app = default_php_fpm_pool_app_config|combine(app_settings) %}
+
+[{{ app.name }}]
+user = {{ app.user }}
+group = {{ app.group }}
+
+listen = {{ app.listen }}
+listen.owner = {{ app.listen_owner }}
+listen.group = {{ app.listen_group }}
+listen.mode = {{ app.listen_mode }}
+listen.allowed_clients = {{ app.listen_allowed_clients }}
+
+{% if app.error_log is defined %}
+php_flag[log_errors] = on
+php_admin_value[error_log] = {{ app.error_log }}
+{% endif %}
+
+{% if app.slow_log is defined %}
+slowlog = {{ app.slow_log }}
+{% endif %}
+
+{% if app.extra_settings is defined %}
+{% set extra_settings = default_php_fpm_pool_app_config.extra_settings|combine(app.extra_settings) %}
+{% for key,value in extra_settings.items() %}
+{% if value != "" %}
+{{ key }} = {{ value }}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if app.environment is defined %}
+{% set app_environment = default_php_fpm_pool_app_config.environment|combine(app.environment) %}
+{% for key,value in app_environment.items() %}
+{% if value != "" %}
+env[{{ key }}] = {{ value }}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if app.admin_values is defined %}
+{% set admin_values = default_php_fpm_pool_app_config.admin_values|combine(app.admin_values) %}
+{% for key,value in admin_values.items() %}
+php_admin_value[{{ key }}] = {{ value }}
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+
+

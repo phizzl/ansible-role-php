@@ -1,0 +1,15 @@
+---
+- name: PHP | Get default extensions to install
+  set_fact:
+    php_extensions: "{% if php_version is version('7', '>') %}{{ php8_extensions + php_extensions }}{% else %}{{ php7_extensions + php_extensions }}{% endif %}"
+  when: php_default_extensions_enabled == true
+
+- name: PHP | Gather PHP packages to install
+  set_fact:
+    php_packages: "{{ php_packages | default([]) + ['php' ~ php_version ~ '-' ~ item] }}"
+  loop: "{{ php_extensions }}"
+  no_log: true
+
+- name: PHP | Install PHP in given version
+  package:
+    name: "{{ php_packages }}"

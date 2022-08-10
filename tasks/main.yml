@@ -1,0 +1,18 @@
+---
+- name: PHP | Include Debian
+  include_tasks: repo-debian.yml
+  when: ansible_distribution == 'Debian'
+
+- name: PHP | Include Ubuntu
+  include_tasks: repo-ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: PHP | Include extensions
+  include_tasks: extensions.yml
+
+- name: PHP | Include cli config
+  include_tasks: cli.yml
+
+- name: PHP | Include fpm config
+  include_tasks: fpm.yml
+  when: php_fpm_enable == true
