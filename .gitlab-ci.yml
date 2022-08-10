@@ -6,5 +6,3 @@ test:yamllint:
     entrypoint: ["/bin/ash", "-c"]
   script:
     - yamllint -f colored .
-  tags:
-    - infrastructure
