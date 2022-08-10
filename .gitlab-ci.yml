@@ -1,0 +1,10 @@
+---
+test:yamllint:
+  stage: test
+  image:
+    name: cytopia/yamllint:latest
+    entrypoint: ["/bin/ash", "-c"]
+  script:
+    - yamllint -f colored .
+  tags:
+    - infrastructure
