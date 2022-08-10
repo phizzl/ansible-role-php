@@ -39,4 +39,3 @@ php_fpm_pools: []
 #     listen: /run/php/www.sock
 #     error_log: /var/log/php_fpm_www_errors.log
 #     slow_log: /var/log/php_fpm_www_slow.log
-

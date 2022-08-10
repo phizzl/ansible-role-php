@@ -2,4 +2,4 @@
 - name: PHP | UBUNTU | Add ppa
   apt_repository:
     repo: ppa:ondrej/php
-    update_cache: yes
+    update_cache: true

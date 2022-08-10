@@ -1,0 +1,26 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: php
+  author: phizzl
+  description: PHP for Ubuntu/Debian.
+  company: "phizzl"
+  license: "license (MIT)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+        - focal
+        - jammy
+  galaxy_tags:
+    - development
+    - web
+    - php
+    - fpm
+    - cli
