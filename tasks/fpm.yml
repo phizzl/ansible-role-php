@@ -1,4 +1,14 @@
 ---
+- name: PHP | FPM | Install extension
+  package:
+    name: "php{{ php_version }}-fpm"
+
+- name: PHP | FPM | Ensure FPM service is enabled
+  service:
+    name: "php{{ php_version }}-fpm"
+    state: present
+    enabled: true
+
 - name: PHP | FPM | Create php.ini for fpm
   template:
     src: php.ini.j2
@@ -37,4 +47,3 @@
     name: "php{{ php_version }}-fpm"
     state: reloaded
   when: restart_fpm is not defined and (php_ini.changed == true or custom_ini.changed == true)
-  register: restart_fpm
