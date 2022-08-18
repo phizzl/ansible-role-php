@@ -37,3 +37,9 @@ php_fpm_pools: []
 # php_fpm_pools:
 #   - name: www
 #     listen: /run/php/www.sock
+
+# Install composer
+php_composer_install: true
+
+# Target for composer installation
+php_composer_target: /usr/local/bin/composer

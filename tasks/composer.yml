@@ -1,0 +1,9 @@
+- name: Fetching composer.phar
+  get_url:
+    url: https://getcomposer.org/composer.phar
+    dest: "{{ php_composer_target }}"
+    mode: '0755'
+    force: false
+
+- name: Self-Update composer
+  shell: "{{ php_composer_target }} self-update"

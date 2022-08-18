@@ -18,6 +18,8 @@ This is a role for installing and managing PHP cli and fpm.
 | php_fpm_error_log | Location of FPM error log                                | /var/log/php_errors.log | no |
 | php_fpm_error_log_level | FPM log level                                            | warning | no |
 | php_fpm_pools | List of FPM pools (see `php_fpm_pools` details)            | [] | no |
+| php_composer_install | Flag wether to install composer or not | true | no |
+| php_composer_target | Path to install composer | /usr/local/bin/composer | no |
 
 ### php_fpm_pools details
 
