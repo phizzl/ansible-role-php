@@ -8,6 +8,7 @@
     name: "php{{ php_version }}-fpm"
     state: present
     enabled: true
+  when: php_fpm_enable == true
 
 - name: PHP | FPM | Create php.ini for fpm
   template:
@@ -39,11 +40,11 @@
   service:
     name: "php{{ php_version }}-fpm"
     state: restarted
-  when: php_fpm_allow_restart == true and (fpm_conf.changed == true or pool_conf.changed == true)
+  when: php_fpm_enable == true and php_fpm_allow_restart == true and (fpm_conf.changed == true or pool_conf.changed == true)
   register: restart_fpm
 
 - name: PHP | FPM | Reload FPM
   service:
     name: "php{{ php_version }}-fpm"
     state: reloaded
-  when: restart_fpm is not defined and (php_ini.changed == true or custom_ini.changed == true)
+  when: php_fpm_enable == true and restart_fpm is not defined and (php_ini.changed == true or custom_ini.changed == true)

@@ -4,22 +4,23 @@ This is a role for installing and managing PHP cli and fpm.
 
 ## Vars
 
-| Name | Description                                              | Default | Required |
-|---|----------------------------------------------------------|---|---|
-| php_version | PHP version to install                                   | 8.1 | yes | 
-| php_ini_global | Global settings for cli and fpm                          | / | no |
-| php_ini_cli | Settings for cli                                         | / | no |
-| php_ini_fpm | Settings for fpm (all pools)                             | / | no |
+| Name                           | Description                                              | Default | Required |
+|--------------------------------|----------------------------------------------------------|---|---|
+| php_version                    | PHP version to install                                   | 8.1 | yes | 
+| php_ini_global                 | Global settings for cli and fpm                          | / | no |
+| php_ini_cli                    | Settings for cli                                         | / | no |
+| php_ini_fpm                    | Settings for fpm (all pools)                             | / | no |
 | php_default_extensions_enabled | Install a list of default extensions (see vars/main.yml) | true | no |
-| php_extensions | List of own PHP extensions to be installed               | [] | no |
-| php_set_alternative | Use this installation as update alternative              | true | no |
-| php_fpm_enable | Location of PHP error log                                | true | no |
-| php_fpm_allow_restart | Allow role to restart FPM if necessary                   | true | no |
-| php_fpm_error_log | Location of FPM error log                                | /var/log/php_errors.log | no |
-| php_fpm_error_log_level | FPM log level                                            | warning | no |
-| php_fpm_pools | List of FPM pools (see `php_fpm_pools` details)            | [] | no |
-| php_composer_install | Flag wether to install composer or not | true | no |
-| php_composer_target | Path to install composer | /usr/local/bin/composer | no |
+| php_extensions                 | List of own PHP extensions to be installed               | [] | no |
+| php_set_alternative            | Use this installation as update alternative              | true | no |
+| php_fpm_install                | Install FPM service                                      | true | no |
+| php_fpm_enable                 | Enable FPM service                                       | true | no |
+| php_fpm_allow_restart          | Allow role to restart FPM if necessary                   | true | no |
+| php_fpm_error_log              | Location of FPM error log                                | /var/log/php_errors.log | no |
+| php_fpm_error_log_level        | FPM log level                                            | warning | no |
+| php_fpm_pools                  | List of FPM pools (see `php_fpm_pools` details)          | [] | no |
+| php_composer_install           | Flag wether to install composer or not                   | true | no |
+| php_composer_target            | Path to install composer                                 | /usr/local/bin/composer | no |
 
 ### php_fpm_pools details
 

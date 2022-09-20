@@ -20,7 +20,10 @@ php_extensions: []
 # Use this installation as update alternative
 php_set_alternative: true
 
-# Location of PHP error log
+# Install FPM
+php_fpm_install: true
+
+# Enable FPM service
 php_fpm_enable: true
 
 # Allow role to restart FPM if necessary

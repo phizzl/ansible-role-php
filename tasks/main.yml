@@ -15,7 +15,7 @@
 
 - name: PHP | Include fpm config
   include_tasks: fpm.yml
-  when: php_fpm_enable == true
+  when: php_fpm_install == true
 
 - name: PHP | Include composer
   include_tasks: composer.yml
