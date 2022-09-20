@@ -1,8 +1,8 @@
 ---
-- name: PHP | FPM | Create php.ini for cli
+- name: PHP | CLI | Create php.ini for cli
   template:
     src: php.ini.j2
-    dest: "/etc/php/{{ php_version }}/fpm/php.ini"
+    dest: "/etc/php/{{ php_version }}/cli/php.ini"
 
 - name: PHP | CLI | Create custom.ini for cli in conf.d
   template:
