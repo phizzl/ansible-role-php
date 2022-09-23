@@ -6,7 +6,6 @@
 - name: PHP | FPM | Ensure FPM service is enabled
   service:
     name: "php{{ php_version }}-fpm"
-    state: present
     enabled: true
   when: php_fpm_enable == true
 
