@@ -40,9 +40,9 @@
     name: "php{{ php_version }}-fpm"
     state: restarted
   when: |
-    php_fpm_enable == true 
-      and php_fpm_pools|length > 0 
-      and php_fpm_allow_restart == true 
+    php_fpm_enable == true
+      and php_fpm_pools|length > 0
+      and php_fpm_allow_restart == true
       and (fpm_conf.changed == true or pool_conf.changed == true)
   register: restart_fpm
 
@@ -51,7 +51,7 @@
     name: "php{{ php_version }}-fpm"
     state: reloaded
   when: |
-    php_fpm_enable == true 
-      and php_fpm_pools|length > 0 
-      and restart_fpm is not defined 
+    php_fpm_enable == true
+      and php_fpm_pools|length > 0
+      and restart_fpm is not defined
       and (php_ini.changed == true or custom_ini.changed == true)
