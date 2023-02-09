@@ -1,6 +1,6 @@
 ---
 # PHP version to install
-php_version: 8.1
+php_version: 8.2
 
 # Global settings
 php_ini_global: {}
